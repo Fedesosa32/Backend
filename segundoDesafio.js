@@ -57,20 +57,20 @@ class ProductManager {
         }        
     }
     
-    // updateProduct = async (id, nuevosValores) =>{
+    updateProduct = async (id, nuevosValores) =>{
 
-    //     const data = await fs.promises.readFile(this.path, 'utf-8');
-    //     const productos = JSON.parse (data)  
-    //     const productoActualizado = productos.findIndex((producto)=>producto.id===id);
-    //     if (productoActualizado!== -1){  
-    //         productos [productoActualizado] = {...productos[productoActualizado], ...nuevosValores}
-    //     await fs.promises.writeFile(this.path, JSON.stringify(productos, null, 2));
-    //     console.log (`Producto con el Id ${id} actualizado correctamente`)
-    // }
-    // else{
-    //     console.log(`No se encuentra el producto con el Id ${id} requerido..`)
-    //     }
-    // }
+        const data = await fs.promises.readFile(this.path, 'utf-8');
+        const productos = JSON.parse (data)  
+        const productoActualizado = productos.findIndex((producto)=>producto.id===id);
+        if (productoActualizado!== -1){  
+            productos [productoActualizado] = {...productos[productoActualizado], ...nuevosValores}
+        await fs.promises.writeFile(this.path, JSON.stringify(productos, null, 2));
+        console.log (`Producto con el Id ${id} actualizado correctamente`)
+    }
+    else{
+        console.log(`No se encuentra el producto con el Id ${id} requerido..`)
+        }
+    }
 
     deleteProduct = async (id)=>{
         const data = await fs.promises.readFile(this.path, 'utf-8');
@@ -142,9 +142,9 @@ const listado = async ()=>{
     console.log ( await item.getProductsById(2));
     console.log ( await item.getProductsById(5));
 
-    // item.updateProduct(1, {title: "Coca Cola", description:"Gaseosa", price:200, thumbnail: "sin imagen", code:"006", stock:90} )
-    // .then (()=>{console.log("Producto actualizado correctamente")})
-    // .catch (()=>{console.log("No se pudo actualizar el Producto")})
+    item.updateProduct(1, {title: "Coca Cola", description:"Gaseosa", price:200, thumbnail: "sin imagen", code:"006", stock:90} )
+    .then (()=>{console.log("Producto actualizado correctamente")})
+    .catch (()=>{console.log("No se pudo actualizar el Producto")})
 
     item.deleteProduct(3)
     .then (()=>{console.log(`Producto con ID ${3} eliminado.`)})
