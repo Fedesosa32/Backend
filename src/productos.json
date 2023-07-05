@@ -1,0 +1,47 @@
+[
+    {   
+        "title": "Tatin",
+        "description": "Alfajor de Chocolate",
+        "price": 20,
+        "thumbnail": "Sin Imagen",
+        "code": "001",
+        "stock": 50,
+        "id": 1
+    },
+    {
+        "title": "Pico Dulce",
+        "description": "Chupetin Frutal",
+        "price": 10,
+        "thumbnail": "Sin Imagen",
+        "code": "002",
+        "stock": 100,
+        "id": 2
+    },
+    {
+        "title": "Bon o Bon",
+        "description": "Bombom de Chocolate",
+        "price": 30,
+        "thumbnail": "Sin Imagen",
+        "code": "003",
+        "stock": 150,
+        "id": 3
+    },
+    {
+        "title": "Oreo",
+        "description": "Galleta Chocolate",
+        "price": 60,
+        "thumbnail": "Sin Imagen",
+        "code": "004",
+        "stock": 200,
+        "id": 4
+    },
+    {
+        "title": "Mogul",
+        "description": "Gomitas azucaradas",
+        "price": 25,
+        "thumbnail": "Sin Imagen",
+        "code": "005",
+        "stock": 40,
+        "id": 5
+    }
+]
