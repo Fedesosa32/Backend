@@ -33,22 +33,12 @@ app.get('/productos', async (req, res) =>{
 
 app.get('/productos/:id', async (req, res) =>{
     const {id} = req.params
-    const productos = await productManager.getProducts() // Aca probe llamar al método del desafío anterior con getProductsByIdgit
-
-    // const productoEncontrado = productos.find((producto)=>producto.id==id);
-    //     if (productoEncontrado){
-    //         res.send (productoEncontrado);
-    //     }
-    //     else{
-    //         res.send ("id no encontrado!!");
-    //     }
-
-    for (const p of productos){
-        if (p.id == id)
-        res.send(p)
-        return
+    const producto = await productManager.getProductsById(+id)
+    
+    if (producto) {
+        res.send(producto);
+    } else {
+        res.send('Producto no encontrado');
     }
-    res.send(productos)
+    
 })
-
-

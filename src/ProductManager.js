@@ -5,7 +5,7 @@ class ProductManager {
     constructor (filename){
 
         this.filename = filename
-        this.filepath = path.join(__dirname, this.filename)
+        this.filepath = path.join(__dirname, this.filename) 
         this.products = []
     }
 
@@ -21,7 +21,7 @@ class ProductManager {
     }
     getProductsById = async (id)=>{
         
-        const data = await fs.promises.readFile(this.path, 'utf-8');
+        const data = await fs.promises.readFile(this.filepath, 'utf-8');
         const productos = JSON.parse (data)
         const productoEncontrado = productos.find((producto)=>producto.id===id);
         if (productoEncontrado){
