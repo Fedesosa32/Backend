@@ -1,8 +1,7 @@
 const {Router} = require ('express')
 const CartsManager = require ('../../managers/CartsManager')
-
-const router = Router()
 const cartsManager = new CartsManager('carts.json')
+const router = Router()
 
 router.get ('/', (req, res)=> {
     res.send ('Carts')
@@ -29,28 +28,22 @@ router.get('/:id', async (req, res) =>{
 })
 
 router.post('/:cid/product/:pid', async (req, res)=>{
-const carritoId = req.params.cid
-const productId = req.params.pid
-
-const carritosActuales = await cartsManager.getCarts()
-const carritoSeleccionado = carritosActuales.find(carrito => carrito.id===carritoId)
-
-if(!carritoSeleccionado){   
-    return res.sendStatus(404).json({error: 'Carrito no Encontrado'})
-}
-
-const productosActuales = carritoSeleccionado.products.find(producto=>producto.id===productId)
-
-if(productosActuales){
-    productosActuales.quantity++
-}
-else{
-    carritoSeleccionado.products.push({product:productId,quantity:1})
-
-}
-res.status(200).json(carritoSeleccionado)
-
+try{
+    const cartId = req.params.cid
+    const productId = req.params.pid
+    const result = await cartsManager.addProductToCart(cartId, productId)
+    
+    if(result === "Producto No Encontrado"){
+        res.status(404).send({status:404, mesagge: "Producto No Encontrado"})
+    } else if(result === "Carrito No Encontrado"){
+        res.status(404).send({status:404, mesagge: "Carrito No Encontrado"})
+    } else {
+        res.status(200).send({status:200, mesagge: "Producto Agregado al Carrito"})
+    }
+} catch (error){
+    console.error("Error al agregar el producto al Carrito", error)
+    res.status(500).send({status:500, mesagge:"Ha ocurrido un error al agregar el producto al Carrito"})
+    }
 })
-
 
 module.exports = router

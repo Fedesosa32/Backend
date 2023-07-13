@@ -1,5 +1,6 @@
 const fs = require ('fs')
 const path = require ('path')
+const ProductManager = require ('./ProductManager')
 
 class CartsManager {
     constructor (filename){
@@ -7,6 +8,7 @@ class CartsManager {
         this.filename = filename
         this.filepath = path.join(__dirname, '../data', this.filename) 
         this.carts = []
+        this.productManager = new ProductManager ('productos.json')
     }
 
     getCarts = async ()=>{
@@ -59,6 +61,38 @@ class CartsManager {
         await fs.promises.writeFile(this.filepath, JSON.stringify(nuevoCarrito, null, 2))
         return nuevoCarrito;
 
+    }
+
+    addProductToCart = async (cid, pid) =>{
+    try{
+        let cartById = await this.getCartsById(+cid)
+        if(!cartById){
+            return "Carrito No Encontrado"
+        }
+
+        let productById = await this.productManager.getProductsById(+pid)
+        if(!productById){
+            return "Producto No Encontrado"
+        }
+
+        const index = cartById.products.findIndex ((prod)=> prod.id === +pid)
+        if (index !== -1){
+            cartById.products[index].cantidad++;
+        } else{
+            cartById.products.push({id:productById.id, cantidad: 1})
+        }
+
+        let cartAll = await this.getCarts()
+        let cartFilter = cartAll.filter ((cart)=> cart.id !== +cid)
+        let newCart = [cartById, ...cartFilter]
+
+        await fs.promises.writeFile(this.filepath, JSON.stringify (newCart, null, 2))
+    }
+    catch (error){
+        console.error("Error al agregar el producto al Carrito:", error)
+        return "Ha ocurrido un error al agregar el producto al Carrito"
+    }
+        
     }
 
     updateProduct = async (id, nuevosValores) =>{
