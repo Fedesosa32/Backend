@@ -11,11 +11,11 @@
         <nav id="navbar" class="uk-navbar-container" uk-navbar>
             <div class="uk-navbar-left">
             <ul class="uk-navbar-nav">
-                <li class="uk-active">
+                <li >
                 <a href="/">Home</a>
                 </li>
                 <li>
-                <a href="/carrito">Carrito<span id="cart-badge" class="uk-label">1</span></a>
+                <a class="uk-active" href="/carrito">Carrito<span id="cart-badge" class="uk-label">1</span></a>
                 </li>
                 <li>
                 <a>Cuenta</a>
@@ -34,19 +34,27 @@
             </div>
         </nav>
         <div class="uk-width-1-1 uk-margin-remove uk-align-center uk-text-break uk-padding">
-            <h2>Elige sabiamente</h2>
-            <div id="products" class="uk-child-width-1-4@m" uk-grid>
+            <h2>Videojuegos en el carrito</h2>
+            
+            <div class="uk-flex uk-flex-between align-cart">
             <div>
+                <h5 class="uk-margin-remove">Total: USD $149</h5>
+            </div>
+            <div>
+                <a href="/pedido">
+                <button class="uk-margin-remove uk-button uk-button-secondary uk-button-small uk-margin-top">Continuar</button>
+                </a>
+            </div>
+            </div>
+            <div id="productsInCart" class="uk-margin-top uk-child-width-1-4@m" uk-grid>
+            <div id="{{id}}">
                 <div class="uk-card uk-card-default">
-                <div class="uk-card-media-top">
-                    <img alt="foto producto" />
-                </div>
                 <div class="uk-card-body">
                     <h3 class="uk-card-title">Red Dead Redemption 2</h3>
-                    <h5>USD $149</h5>
+                    <h5>MXN $149</h5>
                     <span class="uk-badge">Xbox</span>
-                    <p>Vaqueros</p>
-                    <button class="uk-button uk-button-secondary uk-button-small">Agregar al carrito</button>
+                    <br>
+                    <button class="uk-button uk-button-secondary uk-button-small uk-margin-top">Eliminar</button>
                 </div>
                 </div>
             </div>
