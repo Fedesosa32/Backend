@@ -1,5 +1,7 @@
 const {Router} = require('express')
 const path = require ('path')
+const ProductManager = require ('../managers/ProductManager')
+const productManager = new ProductManager ('productos.json')
 //const multer = require ('multer')
 
 //COnfiguración para Implementar Multer. Posterior a eso hay que crear el middleware
@@ -15,18 +17,19 @@ const path = require ('path')
 //const upload = multer ({storage})
 const router = Router ()
 
-router.get('/', (req, res)=>{
+router.get('/', async (req, res)=>{
 //res.sendFile(path.join (__dirname, '../public/index.html'))
+const products = await productManager.getProducts()
+console.log (products)
 res.render('home',{
-    nombre: 'Fede',
-    title: 'Home'
+    title: 'Home',
+    product: products [0]
 })
 })
 
 router.get('/carrito', (req, res)=> {
 //res.sendFile(path.join (__dirname, '../public/carrito.html'))
 res.render('carrito',{
-    numItems: 2,
     title: 'Carrito'
 })
 })
