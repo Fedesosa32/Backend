@@ -23,7 +23,7 @@ const products = await productManager.getProducts()
 console.log (products)
 res.render('home',{
     title: 'Home',
-    product: products [0]
+    products: products [0]
 })
 })
 

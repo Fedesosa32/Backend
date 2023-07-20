@@ -6,12 +6,12 @@
             <img alt="foto producto" />
             </div>
             <div class="uk-card-body">
-            <h3 class="uk-card-title">{{ this.title }}</h3>
-            <h5>USD ${{this.price}}</h5>
+            <h3 class="uk-card-title">{{ products.title }}</h3>
+            <h5>USD ${{products.price}}</h5>
             {{#each this.keywords}}
                 <span class="uk-badge">{{this}}</span>
             {{/each}}
-            <p>{{this.description}}</p>
+            <p>{{products.description}}</p>
             <button class="uk-button uk-button-secondary uk-button-small">Agregar al carrito</button>
             </div>
         </div>
