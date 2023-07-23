@@ -6,15 +6,16 @@
             <img alt="foto producto" />
             </div>
             <div class="uk-card-body">
-            <h3 class="uk-card-title">{{ products.title }}</h3>
-            <h5>USD ${{products.price}}</h5>
-            {{#each this.keywords}}
-                <span class="uk-badge">{{this}}</span>
-            {{/each}}
-            <p>{{products.description}}</p>
+            <h3 class="uk-card-title">{{ this.title }}</h3>
+            <h5>$ {{this.price}}</h5>
+                <span class="uk-badge">{{this.category}}</span>
+                <span class="uk-badge"> Stock {{this.stock}}</span>
+                <span class="uk-badge"> Code {{this.code}}</span>
+            <p>{{this.description}}</p>
             <button class="uk-button uk-button-secondary uk-button-small">Agregar al carrito</button>
             </div>
         </div>
         </div>
     {{/each}}
 </div>
+<script src= "/static/js/home.js"/>

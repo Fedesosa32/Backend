@@ -20,10 +20,9 @@ const router = Router ()
 router.get('/', async (req, res)=>{
 //res.sendFile(path.join (__dirname, '../public/index.html'))
 const products = await productManager.getProducts()
-console.log (products)
 res.render('home',{
     title: 'Home',
-    products: products [0]
+    products,
 })
 })
 
