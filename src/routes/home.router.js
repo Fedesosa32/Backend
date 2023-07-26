@@ -33,6 +33,15 @@ res.render('carrito',{
 })
 })
 
+router.get('/realTimeProducts', async (req, res)=> {
+    const products = await productManager.getProducts()
+    res.render('realTimeProducts',{
+        title: 'Real Time Products',
+        products,
+    })
+    })
+
+
 //Middleware para Multer // Despues desde Postman se crea un POST - Multipart, se agrega nombre del archivo y se carga el mismo en value.
 // router.post('/upload', upload.single('img'), (req, res)=>{
 //     if (req.file){

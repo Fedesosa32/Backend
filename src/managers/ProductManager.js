@@ -84,6 +84,7 @@ class ProductManager {
             console.log(`No se encontró un producto con ID ${id}.`);
         }
     }
+
 }
 
 module.exports = ProductManager

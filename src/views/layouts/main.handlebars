@@ -8,6 +8,7 @@
         {{#if style}} 
         <link rel="stylesheet" href="/static/css/{{style}}.css" type="text/css">
         {{/if}}
+        <script src="/socket.io/socket.io.js"></script>
     </head>
     <body>
         <div class="uk-container uk-width-1-1 uk-padding-remove uk-margin-remove">
@@ -43,7 +44,7 @@
         <div class="uk-width-1-1 uk-margin-remove uk-align-center uk-text-break uk-padding">
             <h2 id="page-title">{{ title }}</h2>
                 <div class="uk-width-1-1 uk-align-center" uk-grid>
-            <button class="uk-button">Refresh</button>
+            <button class="uk-button" onclick="refreshPromo()">Refresh</button>
             <div id="rebaja-banner" class="uk-card uk-card-default uk-width-1-1">
                 <div class="uk-card-body uk-flex">
                 <span id="title"></span>

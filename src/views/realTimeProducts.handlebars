@@ -1,0 +1,21 @@
+<div id="products" class="uk-child-width-1-4@m" uk-grid>
+    {{#each products}}
+        <div>
+        <div class="uk-card uk-card-default">
+            <div class="uk-card-media-top">
+            <img alt="foto producto" />
+            </div>
+            <div class="uk-card-body">
+            <h3 class="uk-card-title">{{ this.title }}</h3>
+            <h5>$ {{this.price}}</h5>
+                <span class="uk-badge">{{this.category}}</span>
+                <span class="uk-badge"> Stock {{this.stock}}</span>
+                <span class="uk-badge"> Code {{this.code}}</span>
+            <p>{{this.description}}</p>
+            <button class="uk-button uk-button-secondary uk-button-small">Agregar al carrito</button>
+            </div>
+        </div>
+        </div>
+    {{/each}}
+</div>
+<script src= "/static/js/realTimeProducts.js"/>

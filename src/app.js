@@ -4,6 +4,7 @@ const path = require ('path')
 const handlebars = require ('express-handlebars')
 const {Server} = require ("socket.io")
 const Routes = require ('./routes/index.js')
+const socketManager = require ('./webSocket')
 
 
 const app = express ()
@@ -21,18 +22,7 @@ app.use('/static', express.static(path.join(__dirname, 'public')))
 app.use('/', Routes.home)
 app.use('/api', Routes.api)
 
-io.on ('connection', (socket) =>{
-    console.log(`Usuario conectado: ${socket.id}`)
-
-    socket.on ('disconnect', ()=>{
-        console.log('Usuario Desconectado')
-    })
-
-    setTimeout(()=>{
-        socket.emit ('descuento', {title: "Mogul", sale: 15})
-    }, 1000)
-
-})
+io.on ('connection', socketManager)
 
 const port = 3000
 server.listen(port, ()=> {
