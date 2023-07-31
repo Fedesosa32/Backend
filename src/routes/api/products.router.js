@@ -1,7 +1,6 @@
 const {Router} = require ('express')
 const ProductManager = require ("../../managers/ProductManager")
 const productManager = new ProductManager('productos.json')
-//const io = require ('../../app')
 
 const router = Router()
 
@@ -35,8 +34,8 @@ router.get('/:id', async (req, res) =>{
 router.post('/', async (req, res) =>{
     const {body} = req
     const producto = await productManager.addProducts(body)
-    
-    //io.emit ('nuevoProducto')
+    const productosActualizados = await productManager.getProducts()
+    req.io.emit ('productoActualizado', productosActualizados) 
     res.status(201).send(producto)
     
 })
@@ -58,7 +57,8 @@ router.delete('/:id', async (req, res) =>{
     const {id} = req.params
     
     await productManager.deleteProduct(+id)
-    //io.emit('productoEliminado')
+    const productosActualizados = await productManager.getProducts()
+    req.io.emit ('productoActualizado', productosActualizados) 
     res.sendStatus(200)
     
 })

@@ -11,6 +11,7 @@ const app = express ()
 const server = http.createServer(app)
 const io = new Server(server)
 
+app.use((req, res, next) => {req.io = io; next(); });
 app.engine('handlebars', handlebars.engine()) // Registramos Handlebars como motor de plantilla
 app.set('views', path.join(__dirname, '/views')) // 
 app.set('view engine', 'handlebars') // setear handlebars como motor
